@@ -20,19 +20,41 @@
                     <i class="ph-fill ph-bowl-food"></i>
                     <span>Swiggy</span>
                 </a>
+                <div class="location-selector" id="locationSelector">
+                    <span id="selectedLocation">Other</span>
+                    <i class="ph ph-caret-down"></i>
+                    <div class="location-dropdown" id="locationDropdown">
+                     
+                        <ul id="locationList">
+                            <li data-location="Bangalore">Bangalore</li>
+                            <li data-location="Mumbai">Mumbai</li>
+                            <li data-location="Delhi">Delhi</li>
+                            <li data-location="Gurgaon">Gurgaon</li>
+                            <li data-location="Hyderabad">Hyderabad</li>
+                            <li data-location="Pune">Pune</li>
+                            <li data-location="Chennai">Chennai</li>
+                            <li data-location="Kolkata">Kolkata</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="index.html" class="nav-link"><i class="ph ph-magnifying-glass"></i> Search</a></li>
                     <li><a href="offers.html" class="nav-link active" style="color: var(--primary-color)"><i class="ph ph-percent"></i> Offers</a></li>
                     <li><a href="help.html" class="nav-link"><i class="ph ph-info"></i> Help</a></li>
+                    <li><a href="#" class="nav-link" id="signInLink"><i class="ph ph-user"></i> <span id="authLinkText">Sign In</span></a></li>
+                    <li><a href="#" class="nav-link cart-link" id="cartToggle"><i class="ph ph-shopping-cart"></i> Cart <span class="cart-count">0</span></a></li>
                 </ul>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="ph ph-list"></i>
+                </button>
             </nav>
         </div>
     </header>
 
-    <main class="container" style="padding-top: 40px; min-height: 80vh;">
-        <h1 style="margin-bottom: 40px; font-weight: 800; font-size: 32px;">Available Offers & Coupons</h1>
+    <main class="container offers-page">
+        <h1>Available Offers & Coupons</h1>
         
         <div class="offers-grid">
             <div class="offer-card orange">
@@ -50,10 +72,20 @@
                 <p>Meals under ₹150 with free delivery.</p>
                 <span class="promo-code">POCKET150</span>
             </div>
-            <div class="offer-card blue" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="offer-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                 <h3>ICICI Bank Offer</h3>
                 <p>Flat ₹100 off on orders above ₹400.</p>
                 <span class="promo-code">ICICI100</span>
+            </div>
+            <div class="offer-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <h3>Weekend Special</h3>
+                <p>Get 30% off on orders above ₹600</p>
+                <span class="promo-code">WEEKEND30</span>
+            </div>
+            <div class="offer-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <h3>Free Delivery</h3>
+                <p>On all orders above ₹299</p>
+                <span class="promo-code">FREEDEL</span>
             </div>
         </div>
     </main>
@@ -61,15 +93,101 @@
     <!-- Footer -->
     <footer>
         <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="color: white; margin-bottom: 20px;">
+                        <i class="ph-fill ph-bowl-food" style="color: white;"></i>
+                        <span>Swiggy</span>
+                    </a>
+                    <ul>
+                        <li>© 2026 Bundl Technologies Pvt. Ltd</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Swiggy One</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact us</h4>
+                    <ul>
+                        <li><a href="help.html">Help & Support</a></li>
+                        <li><a href="#">Partner with us</a></li>
+                        <li><a href="#">Ride with us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>We deliver to:</h4>
+                    <ul>
+                        <li><a href="#">Bangalore</a></li>
+                        <li><a href="#">Gurgaon</a></li>
+                        <li><a href="#">Hyderabad</a></li>
+                        <li><a href="#">Delhi</a></li>
+                        <li><a href="#">Mumbai</a></li>
+                        <li><a href="#">Pune</a></li>
+                    </ul>
+                </div>
+            </div>
             <div class="footer-bottom">
-                <span>© 2026 Bundl Technologies Pvt. Ltd</span>
                 <div class="social-links">
                     <a href="#"><i class="ph ph-facebook-logo"></i></a>
                     <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-twitter-logo"></i></a>
+                </div>
+                <div class="app-links">
+                    <span>Get the app on:</span>
+                    <a href="#">App Store</a>
+                    <a href="#">Google Play</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Login/Signup Modal -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-content">
+            <div class="modal-close" id="closeModal">
+                <i class="ph ph-x"></i>
+            </div>
+            <h2 class="modal-title">Login</h2>
+            <form id="authForm">
+                <div class="form-group">
+                    <input type="text" id="userName" placeholder="Full Name" maxlength="50" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="userMobile" placeholder="Phone Number" maxlength="10" pattern="[0-9]{10}" title="Please enter 10 digits" required>
+                </div>
+                <button type="submit" class="auth-btn">LOGIN</button>
+            </form>
+            <p style="margin-top: 20px; font-size: 14px; color: var(--text-muted);">
+                By clicking on Login, I accept the Terms & Conditions & Privacy Policy
+            </p>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+        <div class="cart-drawer">
+            <div class="drawer-header">
+                <h3>Your Cart</h3>
+                <i class="ph ph-x" id="closeCart"></i>
+            </div>
+            <div class="drawer-body" id="cartItemsContainer">
+                <div class="empty-cart">
+                    <p>Your cart is empty</p>
+                    <span>Good food is always cooking! Go ahead, order some yummy items from the menu.</span>
+                </div>
+            </div>
+            <div class="drawer-footer">
+                <button class="checkout-btn">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

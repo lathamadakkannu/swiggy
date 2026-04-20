@@ -1,13 +1,12 @@
 // Mock Data
 const categories = [
     { id: 1, name: "Biryani", image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=200" },
-    { id: 2, name: "Pizza", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=200" },
-    { id: 3, name: "Burgers", image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&q=80&w=200" },
-    { id: 4, name: "Chinese", image: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=200" },
-    { id: 5, name: "Desserts", image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=200" },
-    { id: 6, name: "Healthy", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=200" },
-    { id: 7, name: "North Indian", image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=200" },
-    { id: 8, name: "South Indian", image: "https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&q=80&w=200" }
+    { id: 2, name: "Pizza & Burgers", image: "https://images.unsplash.com/photo-1598514983318-2f64f8f4796c?auto=format&fit=crop&w=200&q=80" },
+    { id: 3, name: "Chinese", image: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=200" },
+    { id: 4, name: "Desserts", image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=200" },
+    { id: 5, name: "Healthy", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=200" },
+    { id: 6, name: "North Indian", image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=200" },
+    { id: 7, name: "South Indian", image: "https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&q=80&w=200" }
 ];
 
 const restaurants = [
@@ -105,6 +104,7 @@ function init() {
     renderRestaurants(restaurants);
     renderCart();
     setupEventListeners();
+    setupLocationSelector();
 }
 
 // Render Functions
@@ -211,23 +211,24 @@ function saveAndRenderCart() {
 function renderCart() {
     // Update badge
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartBadge.innerText = totalItems;
+    if (cartBadge) cartBadge.innerText = totalItems;
 
     if (!cartItemsContainer) return;
 
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = `
             <div class="empty-cart">
-                <img src="https://images.unsplash.com/photo-1586769852044-692d6e3703f0?auto=format&fit=crop&q=80&w=200" alt="Empty Cart">
                 <p>Your cart is empty</p>
                 <span>Good food is always cooking! Go ahead, order some yummy items from the menu.</span>
             </div>
         `;
-        document.querySelector('.drawer-footer').style.display = 'none';
+        const drawerFooter = document.querySelector('.drawer-footer');
+        if (drawerFooter) drawerFooter.style.display = 'none';
         return;
     }
 
-    document.querySelector('.drawer-footer').style.display = 'block';
+    const drawerFooter = document.querySelector('.drawer-footer');
+    if (drawerFooter) drawerFooter.style.display = 'block';
 
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
@@ -252,21 +253,78 @@ function renderCart() {
     cartItemsContainer.innerHTML = cartHtml;
 
     // Update summary
-    document.querySelector('.drawer-footer').innerHTML = `
-        <div class="cart-summary">
-            <span class="summary-title">Subtotal</span>
-            <span class="summary-total">₹${subtotal}</span>
-        </div>
-        <button class="checkout-btn" onclick="checkout()">Checkout</button>
-    `;
+    const drawerFooterInner = document.querySelector('.drawer-footer');
+    if (drawerFooterInner) {
+        drawerFooterInner.innerHTML = `
+            <div class="cart-summary">
+                <span class="summary-title">Subtotal</span>
+                <span class="summary-total">₹${subtotal}</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        `;
+    }
 }
 
 window.checkout = function () {
     alert("Order placed successfully! Total: ₹" + cart.reduce((sum, item) => sum + (item.price * item.quantity), 0));
     cart = [];
     saveAndRenderCart();
-    document.getElementById('cartDrawerOverlay').style.display = 'none';
+    const cartDrawerOverlay = document.getElementById('cartDrawerOverlay');
+    if (cartDrawerOverlay) cartDrawerOverlay.style.display = 'none';
 };
+
+// Location Selector
+function setupLocationSelector() {
+    const locationSelector = document.getElementById('locationSelector');
+    const locationDropdown = document.getElementById('locationDropdown');
+    const locationSearch = document.getElementById('locationSearch');
+    const locationList = document.getElementById('locationList');
+    const selectedLocationSpan = document.getElementById('selectedLocation');
+
+    if (!locationSelector) return;
+
+    // Toggle dropdown
+    locationSelector.addEventListener('click', (e) => {
+        e.stopPropagation();
+        locationDropdown.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!locationSelector.contains(e.target)) {
+            locationDropdown.classList.remove('active');
+        }
+    });
+
+    // Search functionality
+    if (locationSearch) {
+        locationSearch.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const items = locationList.querySelectorAll('li');
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // Select location
+    const locationItems = locationList.querySelectorAll('li');
+    locationItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const location = item.getAttribute('data-location');
+            selectedLocationSpan.textContent = location;
+            locationDropdown.classList.remove('active');
+            if (locationSearch) locationSearch.value = '';
+            // Reset visibility
+            locationItems.forEach(i => i.style.display = 'block');
+        });
+    });
+}
 
 // Event Listeners
 function setupEventListeners() {
@@ -317,7 +375,9 @@ function setupEventListeners() {
             e.preventDefault();
             const name = userNameInput?.value.trim();
             if (name) {
-                authLinkText.innerText = name.length > 10 ? name.substring(0, 10) + '...' : name;
+                if (authLinkText) {
+                    authLinkText.innerText = name.length > 10 ? name.substring(0, 10) + '...' : name;
+                }
                 authModal.style.display = 'none';
                 alert(`Welcome, ${name}!`);
             }
@@ -332,13 +392,13 @@ function setupEventListeners() {
     if (cartToggle) {
         cartToggle.addEventListener('click', (e) => {
             e.preventDefault();
-            cartDrawerOverlay.style.display = 'block';
+            if (cartDrawerOverlay) cartDrawerOverlay.style.display = 'block';
         });
     }
 
     if (closeCart) {
         closeCart.addEventListener('click', () => {
-            cartDrawerOverlay.style.display = 'none';
+            if (cartDrawerOverlay) cartDrawerOverlay.style.display = 'none';
         });
     }
 
@@ -360,6 +420,29 @@ function setupEventListeners() {
             applyFilters(filterType);
         });
     });
+
+    // Menu Toggle for mobile
+    if (menuToggle) {
+        const navLinks = document.querySelector('.nav-links');
+        menuToggle.addEventListener('click', () => {
+            if (navLinks) {
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
+                } else {
+                    navLinks.style.display = 'flex';
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '80px';
+                    navLinks.style.left = '0';
+                    navLinks.style.right = '0';
+                    navLinks.style.background = 'white';
+                    navLinks.style.padding = '20px';
+                    navLinks.style.boxShadow = 'var(--shadow-md)';
+                    navLinks.style.zIndex = '999';
+                }
+            }
+        });
+    }
 }
 
 function applyFilters(type) {

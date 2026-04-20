@@ -100,11 +100,58 @@ header.sticky {
     font-weight: 600;
     color: var(--text-main);
     cursor: pointer;
+    position: relative;
 }
 
 .location-selector span:first-child {
     border-bottom: 2px solid var(--secondary-color);
     padding-bottom: 2px;
+}
+
+/* Location Dropdown */
+.location-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    width: 250px;
+    z-index: 100;
+    display: none;
+    overflow: hidden;
+}
+
+.location-dropdown.active {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.location-dropdown input {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    outline: none;
+    font-size: 14px;
+}
+
+.location-dropdown ul {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.location-dropdown ul li {
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 14px;
+}
+
+.location-dropdown ul li:hover {
+    background: var(--bg-offset);
+    color: var(--primary-color);
 }
 
 .nav-links {
@@ -731,6 +778,83 @@ footer {
     border-radius: 8px;
 }
 
+/* Help Page Specific */
+.help-container {
+    background: #37718e;
+    color: white;
+    padding: 60px 0;
+    margin-bottom: 40px;
+}
+
+.help-content {
+    display: flex;
+    gap: 40px;
+}
+
+.help-sidebar {
+    width: 300px;
+    background: #edf1f7;
+    color: #282c3f;
+    padding: 20px 0;
+    height: fit-content;
+    border-radius: 16px;
+}
+
+.help-sidebar ul li {
+    padding: 20px 40px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.help-sidebar ul li:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.help-sidebar ul li.active {
+    background: white;
+    color: #282c3f;
+    font-weight: 700;
+    border-left: 4px solid var(--primary-color);
+}
+
+.faq-content {
+    flex: 1;
+    padding: 20px 40px;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+}
+
+.faq-item {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.faq-item h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #3d4152;
+}
+
+.faq-item p {
+    color: #686b78;
+    font-size: 14px;
+}
+
+/* Offers Page Specific */
+.offers-page {
+    padding-top: 40px;
+    min-height: 80vh;
+}
+
+.offers-page h1 {
+    margin-bottom: 40px;
+    font-weight: 800;
+    font-size: 32px;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .hero-text h1 { font-size: 36px; }
@@ -743,6 +867,8 @@ footer {
     .footer-grid { grid-template-columns: repeat(2, 1fr); }
     .hero-text { text-align: center; }
     .search-box { margin: 0 auto; }
+    .help-content { flex-direction: column; }
+    .help-sidebar { width: 100%; }
 }
 
 @media (max-width: 480px) {
