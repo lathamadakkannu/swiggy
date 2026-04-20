@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Help & Support | Swiggy Clone</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,10 +21,9 @@
                     <span>Swiggy</span>
                 </a>
                 <div class="location-selector" id="locationSelector">
-                    <span id="selectedLocation">Other</span>
+                    <span id="selectedLocation">Bangalore</span>
                     <i class="ph ph-caret-down"></i>
                     <div class="location-dropdown" id="locationDropdown">
-                       
                         <ul id="locationList">
                             <li data-location="Bangalore">Bangalore</li>
                             <li data-location="Mumbai">Mumbai</li>
@@ -142,7 +141,7 @@
                     <input type="text" id="userName" placeholder="Full Name" maxlength="50" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" id="userMobile" placeholder="Phone Number" maxlength="10" pattern="[0-9]{10}" title="Please enter 10 digits" required>
+                    <input type="tel" id="userMobile" placeholder="Phone Number" maxlength="10" required>
                 </div>
                 <button type="submit" class="auth-btn">LOGIN</button>
             </form>
@@ -161,7 +160,6 @@
             </div>
             <div class="drawer-body" id="cartItemsContainer">
                 <div class="empty-cart">
-                   
                     <p>Your cart is empty</p>
                     <span>Good food is always cooking! Go ahead, order some yummy items from the menu.</span>
                 </div>
@@ -173,64 +171,5 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // FAQ Data for different tabs
-        const faqData = {
-            orders: [
-                { question: "What is Swiggy One?", answer: "Swiggy One is a membership program that offers unlimited free delivery on thousands of restaurants and other benefits like priority support and exclusive discounts." },
-                { question: "I want an invoice for my order", answer: "You can find the invoice in the 'My Orders' section under the specific order details. Click on the order and select 'Download Invoice'." },
-                { question: "How can I edit my order?", answer: "Orders cannot be edited once placed. However, you can cancel within 60 seconds and place a new order. Look for the 'Cancel' button in the order tracking screen." },
-                { question: "My payment was debited but order not placed", answer: "Don't worry, the amount will be automatically refunded to your original payment method within 5-7 business days. Please contact support if not received." },
-                { question: "How do I track my order?", answer: "You can track your order in real-time from the 'My Orders' section. Click on the active order to see the live location of your delivery partner." }
-            ],
-            general: [
-                { question: "How do I change my delivery address?", answer: "You can change your delivery address from the app/site by going to Profile > Saved Addresses. Add a new address or edit an existing one." },
-                { question: "What payment methods are accepted?", answer: "We accept all major credit/debit cards, net banking, UPI (Google Pay, PhonePe, etc.), and cash on delivery." },
-                { question: "How to apply a coupon code?", answer: "You can apply coupon codes at checkout. Look for the 'Apply Coupon' section, enter your code, and click 'Apply'." },
-                { question: "What is the cancellation policy?", answer: "Orders can be cancelled within 60 seconds of placing them. After that, cancellation may incur a small fee depending on the restaurant's policy." },
-                { question: "How do I report an issue with my order?", answer: "Go to 'My Orders', select the problematic order, and click on 'Report an Issue'. Choose the issue type and submit." }
-            ],
-            legal: [
-                { question: "What is your refund policy?", answer: "Refunds are processed within 5-7 business days to the original payment method. For cash on delivery orders, refunds are credited as Swiggy credits." },
-                { question: "How is my data protected?", answer: "We take data privacy seriously. All personal information is encrypted and we comply with data protection regulations. Read our full privacy policy for details." },
-                { question: "What are the terms for Swiggy One membership?", answer: "Swiggy One is a subscription service that auto-renews monthly/yearly. You can cancel anytime from your account settings." },
-                { question: "Who is liable for incorrect orders?", answer: "If you receive an incorrect or incomplete order, please report within 2 hours. We'll review and provide a refund or credit based on the issue." },
-                { question: "What is your dispute resolution process?", answer: "For any disputes, contact our customer support first. Unresolved issues can be escalated to our grievance officer as per our terms of service." }
-            ]
-        };
-
-        function loadFAQs(tab) {
-            const faqContainer = document.getElementById('faqContent');
-            let data;
-            
-            if (tab === 'orders') data = faqData.orders;
-            else if (tab === 'general') data = faqData.general;
-            else data = faqData.legal;
-
-            faqContainer.innerHTML = data.map(faq => `
-                <div class="faq-item">
-                    <h3>${faq.question}</h3>
-                    <p>${faq.answer}</p>
-                </div>
-            `).join('');
-        }
-
-        // Initialize with Orders tab
-        loadFAQs('orders');
-
-        // Add click listeners to sidebar items
-        const sidebarItems = document.querySelectorAll('.help-sidebar ul li');
-        sidebarItems.forEach(item => {
-            item.addEventListener('click', () => {
-                // Remove active class from all
-                sidebarItems.forEach(i => i.classList.remove('active'));
-                // Add active class to clicked
-                item.classList.add('active');
-                // Load corresponding FAQs
-                const tab = item.getAttribute('data-tab');
-                loadFAQs(tab);
-            });
-        });
-    </script>
 </body>
 </html>

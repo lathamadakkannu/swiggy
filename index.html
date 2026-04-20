@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Swiggy Clone | Food Delivery Website</title>
     <meta name="description" content="Order food from the best restaurants in town. Fast delivery and great offers!">
 
@@ -30,10 +30,9 @@
                     <span>Swiggy</span>
                 </a>
                 <div class="location-selector" id="locationSelector">
-                    <span id="selectedLocation">Other</span>
+                    <span id="selectedLocation">Bangalore</span>
                     <i class="ph ph-caret-down"></i>
                     <div class="location-dropdown" id="locationDropdown">
-                       
                         <ul id="locationList">
                             <li data-location="Bangalore">Bangalore</li>
                             <li data-location="Mumbai">Mumbai</li>
@@ -50,13 +49,11 @@
 
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link"><i class="ph ph-magnifying-glass"></i> Search</a></li>
+                    <li><a href="index.html" class="nav-link active"><i class="ph ph-magnifying-glass"></i> Search</a></li>
                     <li><a href="offers.html" class="nav-link"><i class="ph ph-percent"></i> Offers</a></li>
                     <li><a href="help.html" class="nav-link"><i class="ph ph-info"></i> Help</a></li>
-                    <li><a href="#" class="nav-link" id="signInLink"><i class="ph ph-user"></i> <span
-                                id="authLinkText">Sign In</span></a></li>
-                    <li><a href="#" class="nav-link cart-link" id="cartToggle"><i class="ph ph-shopping-cart"></i> Cart
-                            <span class="cart-count">0</span></a></li>
+                    <li><a href="#" class="nav-link" id="signInLink"><i class="ph ph-user"></i> <span id="authLinkText">Sign In</span></a></li>
+                    <li><a href="#" class="nav-link cart-link" id="cartToggle"><i class="ph ph-shopping-cart"></i> Cart <span class="cart-count">0</span></a></li>
                 </ul>
                 <button class="menu-toggle" id="menuToggle">
                     <i class="ph ph-list"></i>
@@ -74,14 +71,13 @@
                     <p>Discover the best food & drinks in your city</p>
                     <div class="search-box">
                         <input type="text" id="searchInput" placeholder="Search for restaurant, cuisine or a dish">
-                        <button class="search-btn">Search</button>
+                        <button class="search-btn" id="searchBtn">Search</button>
                     </div>
                 </div>
-        
             </div>
         </section>
 
-        <!-- Categories Section -->
+        <!-- Categories Section - What's on your mind? -->
         <section class="categories container">
             <h2 class="section-title">What's on your mind?</h2>
             <div class="category-grid" id="categoryGrid">
@@ -93,7 +89,6 @@
         <section class="offers container">
             <h2 class="section-title">Deals for you</h2>
             <div class="offers-grid" id="offersGrid">
-                <!-- Improved offers will be rendered here via JS -->
                 <div class="offer-card orange">
                     <div class="offer-content">
                         <h3>Pocket Friendly</h3>
@@ -119,7 +114,7 @@
         </section>
 
         <!-- Restaurant Listing Section -->
-        <section class="restaurants container">
+        <section class="restaurants container" id="restaurantsSection">
             <h2 class="section-title">Restaurants with online food delivery in your city</h2>
 
             <div class="filters">
@@ -132,7 +127,6 @@
             </div>
 
             <div class="restaurant-grid" id="restaurantGrid">
-                <!-- Skeleton Loading UI (initially) -->
                 <div class="skeleton-card"></div>
                 <div class="skeleton-card"></div>
                 <div class="skeleton-card"></div>
@@ -210,8 +204,7 @@
                     <input type="text" id="userName" placeholder="Full Name" maxlength="50" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" id="userMobile" placeholder="Phone Number" maxlength="10" pattern="[0-9]{10}"
-                        title="Please enter 10 digits" required>
+                    <input type="tel" id="userMobile" placeholder="Phone Number" maxlength="10" pattern="[0-9]{10}" required>
                 </div>
                 <button type="submit" class="auth-btn">LOGIN</button>
             </form>
@@ -230,7 +223,6 @@
             </div>
             <div class="drawer-body" id="cartItemsContainer">
                 <div class="empty-cart">
-                  
                     <p>Your cart is empty</p>
                     <span>Good food is always cooking! Go ahead, order some yummy items from the menu.</span>
                 </div>
