@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiggy Clone | Food Delivery Website</title>
+    <meta name="description" content="Order food from the best restaurants in town. Fast delivery and great offers!">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons (Phosphor) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <a href="#" class="logo">
+                    <i class="ph-fill ph-bowl-food"></i>
+                    <span>Swiggy</span>
+                </a>
+                <div class="location-selector">
+                    <span>Other</span>
+                    <i class="ph ph-caret-down"></i>
+                </div>
+            </div>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link"><i class="ph ph-magnifying-glass"></i> Search</a></li>
+                    <li><a href="offers.html" class="nav-link"><i class="ph ph-percent"></i> Offers</a></li>
+                    <li><a href="help.html" class="nav-link"><i class="ph ph-info"></i> Help</a></li>
+                    <li><a href="#" class="nav-link" id="signInLink"><i class="ph ph-user"></i> <span
+                                id="authLinkText">Sign In</span></a></li>
+                    <li><a href="#" class="nav-link cart-link" id="cartToggle"><i class="ph ph-shopping-cart"></i> Cart
+                            <span class="cart-count">0</span></a></li>
+                </ul>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="ph ph-list"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>Order food from favorite restaurants near you.</h1>
+                    <p>Discover the best food & drinks in your city</p>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search for restaurant, cuisine or a dish">
+                        <button class="search-btn">Search</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800"
+                        alt="Delicious Food">
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories container">
+            <h2 class="section-title">What's on your mind?</h2>
+            <div class="category-grid" id="categoryGrid">
+                <!-- Dynamic categories will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Offers Section -->
+        <section class="offers container">
+            <h2 class="section-title">Deals for you</h2>
+            <div class="offers-grid" id="offersGrid">
+                <!-- Improved offers will be rendered here via JS -->
+                <div class="offer-card orange">
+                    <div class="offer-content">
+                        <h3>Pocket Friendly</h3>
+                        <p>Enjoy meals under ₹150</p>
+                        <span class="promo-code">CODE: TREAT150</span>
+                    </div>
+                </div>
+                <div class="offer-card blue">
+                    <div class="offer-content">
+                        <h3>Bank Offers</h3>
+                        <p>Up to 25% off with HDFC</p>
+                        <span class="promo-code">CODE: HDFC25</span>
+                    </div>
+                </div>
+                <div class="offer-card green">
+                    <div class="offer-content">
+                        <h3>New User</h3>
+                        <p>Flat ₹125 off on first order</p>
+                        <span class="promo-code">CODE: WELCOME125</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Restaurant Listing Section -->
+        <section class="restaurants container">
+            <h2 class="section-title">Restaurants with online food delivery in your city</h2>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="fast-delivery">Fast Delivery</button>
+                <button class="filter-btn" data-filter="top-rated">Top Rated</button>
+                <button class="filter-btn" data-filter="veg">Pure Veg</button>
+                <button class="filter-btn" data-filter="offers">Offers</button>
+                <button class="filter-btn" data-filter="price-low">Price: Low to High</button>
+            </div>
+
+            <div class="restaurant-grid" id="restaurantGrid">
+                <!-- Skeleton Loading UI (initially) -->
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="color: white; margin-bottom: 20px;">
+                        <i class="ph-fill ph-bowl-food" style="color: white;"></i>
+                        <span>Swiggy</span>
+                    </a>
+                    <ul>
+                        <li>© 2026 Bundl Technologies Pvt. Ltd</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Swiggy One</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact us</h4>
+                    <ul>
+                        <li><a href="#">Help & Support</a></li>
+                        <li><a href="#">Partner with us</a></li>
+                        <li><a href="#">Ride with us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>We deliver to:</h4>
+                    <ul>
+                        <li><a href="#">Bangalore</a></li>
+                        <li><a href="#">Gurgaon</a></li>
+                        <li><a href="#">Hyderabad</a></li>
+                        <li><a href="#">Delhi</a></li>
+                        <li><a href="#">Mumbai</a></li>
+                        <li><a href="#">Pune</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-twitter-logo"></i></a>
+                </div>
+                <div class="app-links">
+                    <span>Get the app on:</span>
+                    <a href="#">App Store</a>
+                    <a href="#">Google Play</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login/Signup Modal -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-content">
+            <div class="modal-close" id="closeModal">
+                <i class="ph ph-x"></i>
+            </div>
+            <h2 class="modal-title">Login</h2>
+            <form id="authForm">
+                <div class="form-group">
+                    <input type="text" id="userName" placeholder="Full Name" maxlength="50" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="userMobile" placeholder="Phone Number" maxlength="10" pattern="[0-9]{10}"
+                        title="Please enter 10 digits" required>
+                </div>
+                <button type="submit" class="auth-btn">LOGIN</button>
+            </form>
+            <p style="margin-top: 20px; font-size: 14px; color: var(--text-muted);">
+                By clicking on Login, I accept the Terms & Conditions & Privacy Policy
+            </p>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+        <div class="cart-drawer">
+            <div class="drawer-header">
+                <h3>Your Cart</h3>
+                <i class="ph ph-x" id="closeCart"></i>
+            </div>
+            <div class="drawer-body" id="cartItemsContainer">
+                <div class="empty-cart">
+                    <img src="https://images.unsplash.com/photo-1586769852044-692d6e3703f0?auto=format&fit=crop&q=80&w=200"
+                        alt="Empty Cart">
+                    <p>Your cart is empty</p>
+                    <span>Good food is always cooking! Go ahead, order some yummy items from the menu.</span>
+                </div>
+            </div>
+            <div class="drawer-footer">
+                <button class="checkout-btn">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support | Swiggy Clone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .help-container {
+            background: #37718e;
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        .help-content {
+            display: flex;
+            gap: 40px;
+        }
+        .help-sidebar {
+            width: 300px;
+            background: #edf1f7;
+            color: #282c3f;
+            padding: 20px 0;
+            height: fit-content;
+        }
+        .help-sidebar ul li {
+            padding: 20px 40px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .help-sidebar ul li.active {
+            background: white;
+            color: #282c3f;
+            font-weight: 700;
+        }
+        .faq-content {
+            flex: 1;
+            padding: 20px 40px;
+        }
+        .faq-item {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .faq-item h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #3d4152;
+        }
+        .faq-item p {
+            color: #686b78;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-inner">
+            <div class="logo-group">
+                <a href="index.html" class="logo">
+                    <i class="ph-fill ph-bowl-food"></i>
+                    <span>Swiggy</span>
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="offers.html" class="nav-link">Offers</a></li>
+                    <li><a href="help.html" class="nav-link active" style="color: var(--primary-color)">Help</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="help-container">
+        <div class="container">
+            <h1 style="font-size: 36px; font-weight: 800;">Help & Support</h1>
+            <p style="opacity: 0.8;">Let's take a step ahead and help you better.</p>
+        </div>
+    </div>
+
+    <main class="container help-content">
+        <div class="help-sidebar">
+            <ul>
+                <li class="active">Help with Orders</li>
+                <li>General Issues</li>
+                <li>Partner Support</li>
+                <li>Legal</li>
+            </ul>
+        </div>
+        <div class="faq-content">
+            <div class="faq-item">
+                <h3>What is Swiggy One?</h3>
+                <p>Swiggy One is a membership program that offers unlimited free delivery on thousands of restaurants and other benefits.</p>
+            </div>
+            <div class="faq-item">
+                <h3>I want an invoice for my order</h3>
+                <p>You can find the invoice in the "My Orders" section under the specific order details.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How can I edit my order?</h3>
+                <p>Orders cannot be edited once placed. However, you can cancel within a few seconds and place a new one.</p>
+            </div>
+            <div class="faq-item">
+                <h3>My payment was debited but order not placed</h3>
+                <p>Don't worry, the amount will be automatically refunded to your original payment method within 5-7 business days.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <span>© 2026 Bundl Technologies Pvt. Ltd</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
